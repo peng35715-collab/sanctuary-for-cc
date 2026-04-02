@@ -19,7 +19,7 @@
            全局与魔法光标 
            ========================================= */
         * { -webkit-tap-highlight-color: transparent; outline: none; box-sizing: border-box; }
-        body { font-family: var(--font-sans); margin: 0; padding: 0; cursor: none; overflow-x: hidden; color: #1d1d1f; user-select: none; -webkit-user-select: none; transition: background-color 0.5s, color 0.5s; background-color: #f5f7fa;}
+        body { font-family: var(--font-sans); margin: 0; padding: 0; cursor: none; overflow-x: hidden; color: #1d1d1f; -webkit-user-select: none; user-select: none; transition: background-color 0.4s ease, color 0.4s ease; background-color: #f5f7fa;}
         body.dark-mode { background-color: #08080a; color: #f5f5f7; }
 
         @media (max-width: 768px) {
@@ -128,9 +128,9 @@
         @keyframes viz-bounce { 0% { height: 2px; } 100% { height: 12px; } }
 
         /* =========================================
-           🔦 高级极客印章 (已修复布局冲突)
+           🔦 高级极客印章 (🚨已修复绝对固定锁定)
            ========================================= */
-        .ghost-seal { position: fixed; bottom: 80px; right: 30px; display: flex; flex-direction: column; align-items: flex-end; opacity: 0; pointer-events: none; transition: opacity 0.6s, transform 0.6s; cursor: pointer; z-index: 50; }
+        .ghost-seal { position: fixed; bottom: 85px; right: 30px; display: flex; flex-direction: column; align-items: flex-end; opacity: 0; pointer-events: none; transition: opacity 0.6s, transform 0.6s; cursor: pointer; z-index: 50; }
         body.dark-mode .ghost-seal { opacity: 0.4; pointer-events: auto; }
         body.dark-mode .ghost-seal:hover { opacity: 1; transform: translateY(-3px); }
         .seal-icon { font-family: var(--font-serif); font-size: 28px; font-weight: bold; color: transparent; -webkit-text-stroke: 1px rgba(0,255,255,0.6); text-shadow: 0 0 8px rgba(0,255,255,0.3); margin-bottom: 2px; letter-spacing: -1px; transition: -webkit-text-stroke 0.3s, text-shadow 0.3s; }
@@ -146,12 +146,11 @@
         .ghost-text-box .ghost-title { color: #00ffff; font-size: 18px; font-family: var(--font-mono); font-weight: bold; margin-bottom: 30px; text-align: center; border-bottom: 1px dashed rgba(0,255,255,0.4); padding-bottom: 15px; letter-spacing: 1px;}
 
         /* =========================================
-           🌟 四大角落触发器
+           🌟 四大角落触发器 (🚨已去除滑动变小干扰)
            ========================================= */
-        .corner-element { position: fixed; color: #1d1d1f; font-family: var(--font-mono); font-size: 12px; font-weight: 600; letter-spacing: 1px; z-index: 1000; text-transform: uppercase; cursor: pointer; background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.6); padding: 8px 16px; border-radius: 30px; transition: background 0.4s, border-color 0.4s, color 0.4s, box-shadow 0.4s, transform 0.4s, opacity 0.4s; box-shadow: inset 1px 1px 1px rgba(255,255,255,0.8); }
+        .corner-element { position: fixed; color: #1d1d1f; font-family: var(--font-mono); font-size: 12px; font-weight: 600; letter-spacing: 1px; z-index: 1000; text-transform: uppercase; cursor: pointer; background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.6); padding: 8px 16px; border-radius: 30px; transition: background 0.4s, border-color 0.4s, color 0.4s, box-shadow 0.4s, transform 0.4s; box-shadow: inset 1px 1px 1px rgba(255,255,255,0.8); }
         body.dark-mode .corner-element { background: rgba(20, 20, 25, 0.6); border-color: rgba(255,255,255,0.15); color: #e5e5ea; box-shadow: inset 1px 1px 1px rgba(255,255,255,0.1); }
         body.dark-mode .corner-element:hover { background: rgba(40, 40, 50, 0.8); border-color: rgba(0,255,255,0.5); box-shadow: 0 0 15px rgba(0,255,255,0.2), inset 1px 1px 1px rgba(255,255,255,0.1); }
-        .corner-element.hide-on-scroll { opacity: 0; pointer-events: none; transform: translateY(10px) scale(0.95); }
         .corner-element:hover { background: rgba(255, 255, 255, 0.9); transform: scale(1.02); }
         
         .corner-tl { top: 20px; left: 20px; } 
@@ -185,9 +184,9 @@
         .play-mode-btn:hover { background: rgba(0,0,0,0.1); transform: scale(1.05); } body.dark-mode .play-mode-btn:hover { background: rgba(0,255,255,0.2); }
         .close-playlist-btn { font-size: 18px; cursor: pointer; transition: color 0.2s; color: #86868b; font-family: var(--font-sans);}
         .bgm-progress-wrapper { display: flex; align-items: center; gap: 10px; width: 100%; font-family: var(--font-mono); font-size: 11px; color: #86868b; margin-bottom: 15px; padding: 0 5px; } 
-        .bgm-progress-bar-container { flex: 1; height: 5px; background: rgba(0,0,0,0.08); border-radius: 3px; cursor: pointer; position: relative; display: flex; align-items: center; } body.dark-mode .bgm-progress-bar-container { background: rgba(255,255,255,0.1); }
-        .bgm-progress-fill { height: 100%; width: 0%; background: #0071e3; border-radius: 3px; pointer-events: none; transition: width 0.1s linear; } body.dark-mode .bgm-progress-fill { background: #00ffff; box-shadow: 0 0 10px #00ffff; }
-        .bgm-progress-thumb { position: absolute; left: 0%; width: 12px; height: 12px; background: #fff; border: 2px solid #0071e3; border-radius: 50%; opacity: 0; transform: translateX(-50%); transition: opacity 0.2s, transform 0.1s; pointer-events: none; } body.dark-mode .bgm-progress-thumb { background: #000; border-color: #00ffff; box-shadow: 0 0 5px #00ffff; }
+        .bgm-progress-bar-container { flex: 1; height: 5px; background: rgba(0,0,0,0.08); border-radius: 3px; cursor: pointer; position: relative; display: flex; align-items: center; transition: background 0.3s; } body.dark-mode .bgm-progress-bar-container { background: rgba(255,255,255,0.1); }
+        .bgm-progress-fill { height: 100%; width: 0%; background: #0071e3; border-radius: 3px; pointer-events: none; transition: width 0.1s linear, background 0.3s, box-shadow 0.3s; } body.dark-mode .bgm-progress-fill { background: #00ffff; box-shadow: 0 0 10px #00ffff; }
+        .bgm-progress-thumb { position: absolute; left: 0%; width: 12px; height: 12px; background: #fff; border: 2px solid #0071e3; border-radius: 50%; opacity: 0; transform: translateX(-50%); transition: opacity 0.2s, transform 0.1s, background 0.3s, border-color 0.3s, box-shadow 0.3s; pointer-events: none; } body.dark-mode .bgm-progress-thumb { background: #000; border-color: #00ffff; box-shadow: 0 0 5px #00ffff; }
         .bgm-progress-bar-container:hover .bgm-progress-thumb { opacity: 1; }
         
         .playlist-tracks-container { max-height: 250px; overflow-y: auto; padding-right: 5px; }
@@ -197,7 +196,7 @@
         .track-play-btn { width: 24px; height: 24px; border-radius: 50%; background: rgba(0,0,0,0.06); display: flex; align-items: center; justify-content: center; font-size: 10px; transition: background 0.2s, color 0.2s; } body.dark-mode .track-play-btn { background: rgba(255,255,255,0.1); }
         .playlist-track.active .track-play-btn { background: rgba(255,255,255,0.2); } body.dark-mode .playlist-track.active .track-play-btn { background: rgba(0,255,255,0.2); color: #00ffff; }
 
-        /* 🚀 豪华面板数据同步入口 */
+        /* 面板数据同步入口 */
         .btn-sync-panel { font-family: var(--font-sans); background: rgba(0, 113, 227, 0.1); color: #0071e3; border: 1px solid rgba(0, 113, 227, 0.2); padding: 10px; border-radius: 12px; font-size: 12px; font-weight: 600; cursor: pointer; transition: background 0.3s, color 0.3s, transform 0.3s, box-shadow 0.3s, border-color 0.3s; width: 100%; display: flex; justify-content: center; align-items: center; gap: 8px;}
         .btn-sync-panel:hover { background: #0071e3; color: #fff; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,113,227,0.3); }
         body.dark-mode .btn-sync-panel { background: rgba(0, 255, 255, 0.1); color: #00ffff; border-color: rgba(0, 255, 255, 0.2); }
@@ -414,11 +413,16 @@
         body.dark-mode .archive-modal-input { background: rgba(20,20,25,0.8); border-color: #444; color: #fff; }
         .archive-modal-input:focus { border-color: #0071e3; } body.dark-mode .archive-modal-input:focus { border-color: #00ffff; }
 
-        /* 🚀 修复隐身 Bug 的复原按钮 */
-        .btn-restore { font-family: var(--font-sans); background: transparent; color: #1d1d1f; border: 1px solid rgba(0,0,0,0.2); padding: 10px 20px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; transition: background 0.2s, transform 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s; }
-        .btn-restore:hover { background: rgba(0,0,0,0.05); transform: scale(1.05); }
-        body.dark-mode .btn-restore { background: transparent; color: #00ffff; border: 1px solid rgba(0,255,255,0.4); }
-        body.dark-mode .btn-restore:hover { background: rgba(0,255,255,0.1); box-shadow: 0 0 10px rgba(0,255,255,0.2); }
+        /* 🚀 彻底修复与对齐：存档中心的两个按钮容器与样式 */
+        .archive-btn-group { display: flex; gap: 15px; justify-content: center; padding: 10px 0; width: 100%; }
+        .sync-btn { font-family: var(--font-sans); flex: 1; max-width: 160px; height: 44px; border-radius: 22px; cursor: pointer; font-weight: 600; font-size: 14px; transition: transform 0.2s, background 0.3s, box-shadow 0.3s, color 0.3s, border-color 0.3s; border: none; display: flex; align-items: center; justify-content: center; }
+        .sync-btn:hover { transform: scale(1.05); }
+
+        /* 白天模式颜色 */
+        .btn-gen, .btn-res { background: rgba(0, 113, 227, 0.1); color: #0071e3; border: 1px solid transparent; }
+        /* 黑夜模式颜色 - 两者完全保持一致发光青色 */
+        body.dark-mode .btn-gen, body.dark-mode .btn-res { background: rgba(0, 255, 255, 0.15); color: #00ffff; border: 1px solid rgba(0, 255, 255, 0.3); }
+        body.dark-mode .btn-gen:hover, body.dark-mode .btn-res:hover { background: rgba(0, 255, 255, 0.25); box-shadow: 0 0 15px rgba(0,255,255,0.3); }
 
     </style>
 </head>
@@ -615,7 +619,7 @@
     <div class="modal-overlay bg-close-target" id="archive-modal">
         <div class="modal-box" onclick="event.stopPropagation()">
             <div class="pay-title" style="margin-bottom: 10px;">🔄 数据同步与备份</div>
-            <div class="rules-content" style="max-height: 40vh;">
+            <div class="rules-content" style="max-height: 40vh; overflow: visible;">
                 <p style="font-size: 13px; color: #86868b; line-height: 1.8; text-align: justify; font-family: var(--font-kaiti);">
                     温馨提示：既然是我为你量身打造的极客级纯前端避难所，那肯定是没有那种俗气的云端数据库的。你在这里的所有特权余额和消费记录，绝对安全地锁死在你自己的设备里。<br><br>
                     但万一哪天你换手机了，或者不小心清了浏览器缓存怎么办？别慌，我这么天才肯定早就替你想好了！点击下面的按钮，系统会为你生成一串专属的「数字记忆密语」，把它找个地方妥善存好。以后到了新设备，只要把这串密语往这里一粘贴，瞬间满血复活！
@@ -623,10 +627,12 @@
                 <div style="display:flex; gap:10px; margin-top:20px;">
                     <input type="text" class="archive-modal-input input-target" id="archive-modal-input" placeholder="粘贴密语复原数据...">
                 </div>
-                <div style="display:flex; gap:15px; margin-top:20px; justify-content:center;">
-                    <button class="pay-btn hover-target" onclick="handleGenerateArchive()" style="padding:10px 20px; font-size:13px;">生成密语</button>
-                    <button class="btn-restore hover-target" onclick="handleRestoreArchive()">复原记忆</button>
+                
+                <div class="archive-btn-group">
+                    <button class="sync-btn btn-gen hover-target" onclick="handleGenerateArchive()">生成密语</button>
+                    <button class="sync-btn btn-res hover-target" onclick="handleRestoreArchive()">复原记忆</button>
                 </div>
+                
             </div>
             <button class="btn-link hover-target" style="margin-top: 25px;" onclick="closeModals()">关闭</button>
         </div>
@@ -652,7 +658,7 @@
         requestAnimationFrame(renderCursor);
 
         document.addEventListener('mouseover', (e) => {
-            if (e.target.closest('.hover-target, .theme-switch-wrapper, .ghost-seal, .store-item, .history-item, .playlist-track, .apple-nav-btn, .btn-primary, .btn-restore, .pay-btn')) {
+            if (e.target.closest('.hover-target, .theme-switch-wrapper, .ghost-seal, .store-item, .history-item, .playlist-track, .apple-nav-btn, .btn-primary, .sync-btn, .pay-btn')) {
                 magicCursor.classList.add('cursor-hovering');
             }
             if (e.target.closest('.input-target, .archive-modal-input')) {
@@ -667,7 +673,7 @@
         });
 
         document.addEventListener('mouseout', (e) => {
-            const hoverEl = e.target.closest('.hover-target, .theme-switch-wrapper, .ghost-seal, .store-item, .history-item, .playlist-track, .apple-nav-btn, .btn-primary, .btn-restore, .pay-btn');
+            const hoverEl = e.target.closest('.hover-target, .theme-switch-wrapper, .ghost-seal, .store-item, .history-item, .playlist-track, .apple-nav-btn, .btn-primary, .sync-btn, .pay-btn');
             const inputEl = e.target.closest('.input-target, .archive-modal-input');
             const precisionEl = e.target.closest('.precision-target');
             const bentoEl = e.target.closest('.bento-target');
@@ -775,14 +781,14 @@
         // 🎬 核心加载与全局音频解锁逻辑
         // =========================================
         window.addEventListener('load', () => {
-            // 🚀 重点修复：网页一打开，先强制把播放列表渲染出来
+            // 🚀 确保开局强行渲染播放列表
             renderPlaylist();
             
             setTimeout(() => {
                 document.body.classList.add('preloaded');
                 setTimeout(() => {
                     document.getElementById('preloader').style.display = 'none';
-                    // 🚀 微信静音突破：全局首击激活
+                    // 🚀 微信/手机浏览器静音突破：全局首击激活
                     document.addEventListener('click', function firstClickPlay(e) {
                         if(!isBgmPlaying) { 
                             if(e.target.closest('.btn-primary') || e.target.closest('.track-play-btn')) {
@@ -811,28 +817,28 @@
         let currentPlayingId = null; let isBgmPlaying = false; let currentModeIndex = 0;
         const NORMAL_VOLUME = 0.4; const DUCKED_VOLUME = 0.05;   
         
-        // 🚀 核心修复：播放模式数组
+        // 🚀 播放模式常量
         const PLAY_MODES = ['loop-list', 'loop-single', 'random'];
         
         const allPanels = ['panel-tl', 'panel-tr', 'panel-bl', 'panel-br']; 
         const allTriggers = ['trigger-tl', 'trigger-tr', 'trigger-bl', 'trigger-br'];
 
-        // 🎵 【重构播放列表：安全路径映射版】
+        // 🎵 【核心大修复：根据截图对齐 BGM 字典】
         const bgmPlaylist = [ 
-            { id: 1, title: '星晴 - 周杰伦', src: 'bgm1.mp3' }, 
-            { id: 2, title: '园游会 - 周杰伦', src: 'bgm2.mp3' }, 
-            { id: 3, title: '手写的从前 - 周杰伦', src: 'bgm3.mp3' }, 
-            { id: 4, title: '龙卷风 - 周杰伦', src: 'bgm4.mp3' }, 
-            { id: 5, title: '好久不见 - 周杰伦', src: 'bgm5.mp3' }, 
-            { id: 6, title: '怎么了 - 周杰伦', src: 'bgm6.mp3' }, 
-            { id: 7, title: '爱你没差 - 周杰伦', src: 'bgm7.mp3' }, 
-            { id: 8, title: '她的睫毛 - 周杰伦', src: 'bgm8.mp3' },
-            { id: 9, title: '那天下雨了 - 周杰伦', src: 'bgm9.mp3' }, 
+            { id: 1, title: '爱你没差 - 周杰伦', src: 'bgm1.mp3' }, 
+            { id: 2, title: '好久不见 - 周杰伦', src: 'bgm2.mp3' }, 
+            { id: 3, title: '龙卷风 - 周杰伦', src: 'bgm3.mp3' }, 
+            { id: 4, title: '手写的从前 - 周杰伦', src: 'bgm4.mp3' }, 
+            { id: 5, title: '她的睫毛 - 周杰伦', src: 'bgm5.mp3' }, 
+            { id: 6, title: '园游会 - 周杰伦', src: 'bgm6.mp3' }, 
+            { id: 7, title: '怎么了 - 周杰伦', src: 'bgm7.mp3' }, 
+            { id: 8, title: '星晴 - 周杰伦', src: 'bgm8.mp3' },
+            { id: 9, title: '绝对占有 相对自由 - 陈粒', src: 'bgm9.mp3' }, 
             { id: 10, title: '见过水星 - 姜鹏/很美味', src: 'bgm10.mp3' },
             { id: 11, title: '当冬夜渐暖 - 孙燕姿', src: 'bgm11.mp3' },
             { id: 12, title: '我怀念的 - 孙燕姿', src: 'bgm12.mp3' },
             { id: 13, title: '遇见 - 孙燕姿', src: 'bgm13.mp3' },
-            { id: 14, title: '绝对占有 相对自由 - 陈粒', src: 'bgm14.mp3' } 
+            { id: 14, title: '那天下雨了 - 周杰伦', src: 'bgm14.mp3' } 
         ];
 
         let currentBgmIndex = Math.floor(Math.random() * bgmPlaylist.length); 
@@ -905,10 +911,7 @@
             }); 
         });
 
-        let scrollTimeout;
-        document.querySelectorAll('.app-view').forEach(view => { view.addEventListener('scroll', () => { document.querySelectorAll('.corner-element').forEach(el => el.classList.add('hide-on-scroll')); clearTimeout(scrollTimeout); scrollTimeout = setTimeout(() => { document.querySelectorAll('.corner-element').forEach(el => el.classList.remove('hide-on-scroll')); }, 500); }); });
-
-        // 🚀 核心修复：BGM 切歌引擎与模式控制全套复原
+        // 🚀 核心修复：BGM 切歌引擎与模式控制全套重新接管
         bgmAudio.addEventListener('ended', function() { 
             const mode = PLAY_MODES[currentModeIndex]; 
             if (mode === 'loop-single') { 
@@ -941,7 +944,6 @@
                 const isActive = (index === currentBgmIndex); 
                 const isPlayingThis = isActive && isBgmPlaying; 
                 const icon = isPlayingThis ? '⏸' : '▶'; 
-                // 🚀 此处彻底确保调用的是 playSpecificBgm 
                 playlistTracksContainer.innerHTML += `<div class="playlist-track hover-target ${isActive ? 'active' : ''}" onclick="playSpecificBgm(event, ${index})"><span>${track.title}</span><div class="track-play-btn">${icon}</div></div>`; 
             }); 
         }
