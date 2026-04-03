@@ -105,6 +105,13 @@
         body.is-panel-open .app-view > * { filter: blur(8px); opacity: 0.4; pointer-events: none; transform: scale(0.96); transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), filter 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
         .fade-edges { -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%); }
 
+        /* 🚀 专门为切黑白模式优化的幕布层 */
+        #theme-transition-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: 100005; pointer-events: none; opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+        }
+
         /* =========================================
            🔘 全新精美小拨杆
            ========================================= */
@@ -128,7 +135,7 @@
         @keyframes viz-bounce { 0% { height: 2px; } 100% { height: 12px; } }
 
         /* =========================================
-           🔦 极客印章 (🚀 终极居中绝密排版，绝不重叠)
+           🔦 极客印章 (居中对齐)
            ========================================= */
         .ghost-seal { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.6s, transform 0.6s; cursor: pointer; z-index: 50; }
         body.dark-mode .ghost-seal { opacity: 0.4; pointer-events: auto; }
@@ -146,7 +153,7 @@
         .ghost-text-box .ghost-title { color: #00ffff; font-size: 18px; font-family: var(--font-mono); font-weight: bold; margin-bottom: 30px; text-align: center; border-bottom: 1px dashed rgba(0,255,255,0.4); padding-bottom: 15px; letter-spacing: 1px;}
 
         /* =========================================
-           🌟 四大角落触发器 
+           🌟 四大角落触发器
            ========================================= */
         .corner-element { position: fixed; color: #1d1d1f; font-family: var(--font-mono); font-size: 12px; font-weight: 600; letter-spacing: 1px; z-index: 1000; text-transform: uppercase; cursor: pointer; background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.6); padding: 8px 16px; border-radius: 30px; transition: background 0.4s, border-color 0.4s, color 0.4s, box-shadow 0.4s, transform 0.4s; box-shadow: inset 1px 1px 1px rgba(255,255,255,0.8); }
         body.dark-mode .corner-element { background: rgba(20, 20, 25, 0.6); border-color: rgba(255,255,255,0.15); color: #e5e5ea; box-shadow: inset 1px 1px 1px rgba(255,255,255,0.1); }
@@ -414,7 +421,6 @@
         body.dark-mode .archive-modal-input { background: rgba(20,20,25,0.8); border-color: #444; color: #fff; }
         .archive-modal-input:focus { border-color: #0071e3; } body.dark-mode .archive-modal-input:focus { border-color: #00ffff; }
 
-        /* 🚀 存档控制面板居中按钮组 */
         .archive-btn-group { display: flex; gap: 15px; justify-content: center; padding: 15px 0; width: 100%; }
         .sync-btn { font-family: var(--font-sans); flex: 1; max-width: 160px; height: 44px; border-radius: 22px; cursor: pointer; font-weight: 600; font-size: 14px; transition: transform 0.2s, background 0.3s, box-shadow 0.3s, color 0.3s, border-color 0.3s; border: none; display: flex; align-items: center; justify-content: center; }
         .sync-btn:hover { transform: scale(1.05); }
@@ -426,6 +432,8 @@
     </style>
 </head>
 <body class="dark-mode">
+
+    <div id="theme-transition-overlay"></div>
 
     <div id="preloader">
         <div class="spotlight"></div>
@@ -718,7 +726,7 @@
         });
 
         // =========================================
-        // 💾 极客离线存档协议 
+        // 💾 极客离线存档协议
         // =========================================
         const ARCHIVE_PREFIX = "PHC-ARC-";
         const STORAGE_KEYS = { balance: 'phc_core_database_v1_b', history: 'phc_core_database_v1_h', lastYear: 'phc_core_database_v1_y', claimedOnce: 'phc_core_database_v1_c' };
@@ -783,11 +791,11 @@
         }
 
         // =========================================
-        // 🎬 全局核心逻辑与BGM完美接管
+        // 🎬 全局核心逻辑
         // =========================================
         let currentPlayingId = null; 
         let isBgmPlaying = false; 
-        let currentModeIndex = 0; // 0: 列表循环, 1: 单曲循环, 2: 随机播放
+        let currentModeIndex = 0; 
         const NORMAL_VOLUME = 0.4; 
         const DUCKED_VOLUME = 0.05;   
         const PLAY_MODES = ['loop-list', 'loop-single', 'random'];
@@ -795,7 +803,6 @@
         const allPanels = ['panel-tl', 'panel-tr', 'panel-bl', 'panel-br']; 
         const allTriggers = ['trigger-tl', 'trigger-tr', 'trigger-bl', 'trigger-br'];
 
-        // 🎵 【完全对齐本地文件的正确字典】
         const bgmPlaylist = [ 
             { id: 1, title: '星晴 - 周杰伦', src: 'bgm1.mp3' }, 
             { id: 2, title: '爱你没差 - 周杰伦', src: 'bgm2.mp3' }, 
@@ -831,7 +838,6 @@
                 document.body.classList.add('preloaded');
                 setTimeout(() => {
                     document.getElementById('preloader').style.display = 'none';
-                    // 微信静音突破
                     document.addEventListener('click', function firstClickPlay(e) {
                         if(!isBgmPlaying) { 
                             if(e.target.closest('.btn-primary') || e.target.closest('.track-play-btn')) {
@@ -844,7 +850,6 @@
                     });
                 }, 1500); 
                 
-                // 定格入场动画
                 setTimeout(() => {
                     document.querySelectorAll('#view-home .header, .corner-element, .bento-item').forEach(el => {
                         el.classList.add('anim-done');
@@ -853,7 +858,6 @@
                         el.style.filter = 'blur(0px)';
                     });
                 }, 2200);
-
             }, 1200); 
         });
 
@@ -863,12 +867,25 @@
             drawer: { title: "// DECRYPTED MESSAGE: 寄存柜手记", body: "<p>说实话，刚开始构思这个‘云端碎碎念’的时候，我总觉得它和杂货铺的功能有点撞车。但后来我想明白了，杂货铺是让你来行使特权的，而这个寄存柜，则是纯粹为你提供回血服务的。</p><p>还是知道你最近转了专业之后，压力肉眼可见地变大了。每天从早到晚连轴转地去实习，简直和我在自家兼职的时候一模一样，身体和精神肯定会有那种被彻底掏空、觉得干什么都提不起劲的瞬间。所以勒，我就想把这个板块慢慢的打造成一个富有能量的版块。</p><p>至于以后具体会往里面塞点啥，额…我暂时还没完全规划好。走一步看一步吧，大概率会是某天偶然看到的一句特别有力量的话，或者是我生活中遇到的一件让人特别开心、特别好玩的小事。</p><p>因为我始终相信，文字本身是带有能量的。我希望以后当你在实习路上觉得无聊、迷茫，或者精神快要透支的时候，只要点进这个抽屉随便看看，就能感受到一股暖流，帮你把疲惫的血槽一点点拉满。</p><p>不知道你能不能get到那种感觉？就像我每个星期都会眼巴巴地期待我王哥的直播一样，或者说就像你在追一部你特喜欢的剧，但它每周才更一集，然后你就每次都会去关注一下更新没。（虽然说没有这么夸张，但大概就是这个意思喽）</p><p>生活太累、太枯燥的时候，人总是需要一个固定的‘盼头’去撑着的。在王哥直播间里我能有一种纯粹的放松感，真的能给人带来完全不一样的情绪价值。</p><p>我也希望，这个会时不时冒出点新动静的云端抽屉，在长久的未来里，也能达到相似的效果，成为你疲惫生活里的一个小小的‘盼头’。</p><p>所以勒，累了就来逛逛。这里存放的全是我为你打包的能量，随时汲取，绝对管够。反正又不要多久。</p>" }
         };
 
+        // 🚀 全新平滑幕布主题切换
         function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-            if(!document.body.classList.contains('dark-mode')){
-                document.getElementById('global-ghost-container').classList.remove('revealed');
-            }
+            const overlay = document.getElementById('theme-transition-overlay');
+            const isCurrentlyDark = document.body.classList.contains('dark-mode');
+            
+            overlay.style.backgroundColor = isCurrentlyDark ? '#f5f7fa' : '#08080a';
+            overlay.style.opacity = '1';
+            
+            setTimeout(() => {
+                document.body.classList.toggle('dark-mode');
+                if(!document.body.classList.contains('dark-mode')){
+                    document.getElementById('global-ghost-container').classList.remove('revealed');
+                }
+                setTimeout(() => { 
+                    overlay.style.opacity = '0'; 
+                }, 50); 
+            }, 200); 
         }
+
         function openGhostText(section) {
             if(!document.body.classList.contains('dark-mode')) return; 
             document.getElementById('ghost-title').innerHTML = ghostTexts[section].title;
@@ -922,7 +939,6 @@
             }); 
         });
 
-        // 🚨 BGM 引擎与模式控制
         bgmAudio.addEventListener('ended', function() { 
             const mode = PLAY_MODES[currentModeIndex]; 
             if (mode === 'loop-single') { 
@@ -1249,7 +1265,6 @@
 
         initDrawer(); 
         
-        // 🚀 阶梯瀑布流微任务渲染引擎
         const paragraphs = document.querySelectorAll('.letter-content p, .signature');
         let delayCounter = 0;
         let lastTime = 0;
