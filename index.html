@@ -58,7 +58,7 @@
         body.dark-mode .cursor-bento-mode { background: #00ffff !important; box-shadow: 0 0 15px #00ffff !important; }
 
         /* =========================================
-           🎬 电影级极客序幕 (Pre-loader)
+           🎬 电影级极客序幕
            ========================================= */
         #preloader { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #08080a; z-index: 100000; display: flex; justify-content: center; align-items: center; transition: opacity 1.5s cubic-bezier(0.22, 1, 0.36, 1); overflow: hidden; pointer-events: all;}
         .spotlight { width: 0px; height: 0px; box-shadow: 0 0 150px 80px rgba(255, 255, 255, 0.8); border-radius: 50%; opacity: 0; animation: ignite 2.5s cubic-bezier(0.22, 1, 0.36, 1) forwards; position: absolute;}
@@ -79,7 +79,7 @@
         body.preloaded #view-home .card-letter { animation: floatUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.7s; }
 
         /* =========================================
-           🌌 终极视觉底座：流体极光与胶片噪点
+           🌌 终极视觉底座
            ========================================= */
         #aurora-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -3; overflow: hidden; background: #fdfbf7; transition: background 0.8s ease; }
         body.dark-mode #aurora-bg { background: #0a0a0c; }
@@ -106,7 +106,7 @@
         .fade-edges { -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%); }
 
         /* =========================================
-           🔘 全新精美小拨杆 (昼夜开关)
+           🔘 全新精美小拨杆
            ========================================= */
         .theme-switch-wrapper { display: flex; align-items: center; gap: 8px; cursor: pointer; margin-left: 10px; pointer-events: auto;}
         .theme-switch { width: 36px; height: 18px; background: rgba(0,0,0,0.1); border-radius: 10px; position: relative; border: 1px solid rgba(0,0,0,0.2); transition: background 0.4s, border-color 0.4s, box-shadow 0.4s;}
@@ -128,14 +128,14 @@
         @keyframes viz-bounce { 0% { height: 2px; } 100% { height: 12px; } }
 
         /* =========================================
-           🔦 高级极客印章 (🚀 终极版修复：内容底部绝对定位，不随屏幕浮动)
+           🔦 极客印章 (🚀 终极居中绝密排版，绝不重叠)
            ========================================= */
-        .ghost-seal { position: absolute; bottom: 30px; right: 40px; display: flex; flex-direction: column; align-items: flex-end; opacity: 0; pointer-events: none; transition: opacity 0.6s, transform 0.6s; cursor: pointer; z-index: 50; }
+        .ghost-seal { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.6s, transform 0.6s; cursor: pointer; z-index: 50; }
         body.dark-mode .ghost-seal { opacity: 0.4; pointer-events: auto; }
-        body.dark-mode .ghost-seal:hover { opacity: 1; transform: translateY(-3px); }
-        .seal-icon { font-family: var(--font-serif); font-size: 28px; font-weight: bold; color: transparent; -webkit-text-stroke: 1px rgba(0,255,255,0.6); text-shadow: 0 0 8px rgba(0,255,255,0.3); margin-bottom: 2px; letter-spacing: -1px; transition: -webkit-text-stroke 0.3s, text-shadow 0.3s; }
+        body.dark-mode .ghost-seal:hover { opacity: 1; transform: translate(-50%, -3px); }
+        .seal-icon { font-family: var(--font-serif); font-size: 24px; font-weight: bold; color: transparent; -webkit-text-stroke: 1px rgba(0,255,255,0.6); text-shadow: 0 0 8px rgba(0,255,255,0.3); margin-bottom: 2px; letter-spacing: -1px; transition: -webkit-text-stroke 0.3s, text-shadow 0.3s; }
         body.dark-mode .ghost-seal:hover .seal-icon { -webkit-text-stroke: 1.5px #00ffff; text-shadow: 0 0 15px rgba(0,255,255,0.8); }
-        .seal-text { font-family: var(--font-mono); font-size: 10px; color: rgba(0,255,255,0.7); letter-spacing: 1px; transition: color 0.3s, text-shadow 0.3s; }
+        .seal-text { font-family: var(--font-mono); font-size: 9px; color: rgba(0,255,255,0.7); letter-spacing: 1px; transition: color 0.3s, text-shadow 0.3s; text-transform: uppercase;}
         body.dark-mode .ghost-seal:hover .seal-text { color: #00ffff; text-shadow: 0 0 8px rgba(0,255,255,0.5); }
 
         .ghost-text-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center; z-index: 9998; opacity: 0; pointer-events: none; transition: opacity 0.5s ease; background: radial-gradient(circle at center, rgba(0,15,25,0.85) 0%, rgba(0,0,0,0.95) 100%); backdrop-filter: blur(10px); }
@@ -146,7 +146,7 @@
         .ghost-text-box .ghost-title { color: #00ffff; font-size: 18px; font-family: var(--font-mono); font-weight: bold; margin-bottom: 30px; text-align: center; border-bottom: 1px dashed rgba(0,255,255,0.4); padding-bottom: 15px; letter-spacing: 1px;}
 
         /* =========================================
-           🌟 四大角落触发器 (🚨无缩放干扰版)
+           🌟 四大角落触发器 
            ========================================= */
         .corner-element { position: fixed; color: #1d1d1f; font-family: var(--font-mono); font-size: 12px; font-weight: 600; letter-spacing: 1px; z-index: 1000; text-transform: uppercase; cursor: pointer; background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.6); padding: 8px 16px; border-radius: 30px; transition: background 0.4s, border-color 0.4s, color 0.4s, box-shadow 0.4s, transform 0.4s; box-shadow: inset 1px 1px 1px rgba(255,255,255,0.8); }
         body.dark-mode .corner-element { background: rgba(20, 20, 25, 0.6); border-color: rgba(255,255,255,0.15); color: #e5e5ea; box-shadow: inset 1px 1px 1px rgba(255,255,255,0.1); }
@@ -181,7 +181,6 @@
         
         .playlist-header { display: flex; justify-content: space-between; align-items: center; font-size: 12px; font-weight: 600; color: #86868b; letter-spacing: 1px; margin-bottom: 12px; padding: 0 5px; } .playlist-header-left { display: flex; align-items: center; gap: 10px; } 
         
-        /* 🚨 播放顺序按钮修复 */
         .play-mode-btn { width: 28px; height: 28px; border-radius: 50%; background: rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 14px; transition: background 0.2s, transform 0.2s; pointer-events: auto; z-index: 10;} body.dark-mode .play-mode-btn { background: rgba(255,255,255,0.1); }
         .play-mode-btn:hover { background: rgba(0,0,0,0.1); transform: scale(1.05); } body.dark-mode .play-mode-btn:hover { background: rgba(0,255,255,0.2); }
         
@@ -189,8 +188,8 @@
         .bgm-progress-wrapper { display: flex; align-items: center; gap: 10px; width: 100%; font-family: var(--font-mono); font-size: 11px; color: #86868b; margin-bottom: 15px; padding: 0 5px; } 
         .bgm-progress-bar-container { flex: 1; height: 5px; background: rgba(0,0,0,0.08); border-radius: 3px; cursor: pointer; position: relative; display: flex; align-items: center; transition: background 0.3s; } body.dark-mode .bgm-progress-bar-container { background: rgba(255,255,255,0.1); }
         .bgm-progress-fill { height: 100%; width: 0%; background: #0071e3; border-radius: 3px; pointer-events: none; transition: width 0.1s linear, background 0.3s, box-shadow 0.3s; } body.dark-mode .bgm-progress-fill { background: #00ffff; box-shadow: 0 0 10px #00ffff; }
-        .bgm-progress-thumb { position: absolute; left: 0%; width: 12px; height: 12px; background: #fff; border: 2px solid #0071e3; border-radius: 50%; opacity: 0; transform: translateX(-50%); transition: opacity 0.2s, transform 0.1s, background 0.3s, border-color 0.3s, box-shadow 0.3s; pointer-events: none; } body.dark-mode .bgm-progress-thumb { background: #000; border-color: #00ffff; box-shadow: 0 0 5px #00ffff; }
-        .bgm-progress-bar-container:hover .bgm-progress-thumb { opacity: 1; }
+        .bgm-progress-thumb { position: absolute; left: 0%; width: 12px; height: 12px; background: #fff; border: 2px solid #0071e3; border-radius: 50%; opacity: 0; transform: translateX(-50%); transition: opacity 0.2s, transform 0.1s, background 0.3s, border-color 0.3s, box-shadow 0.3s; pointer-events: none; } body.dark-mode .progress-thumb { background: #000; border-color: #00ffff; box-shadow: 0 0 5px #00ffff; }
+        .bgm-progress-bar-container:hover .progress-thumb { opacity: 1; }
         
         .playlist-tracks-container { max-height: 250px; overflow-y: auto; padding-right: 5px; }
         .playlist-track { padding: 10px 12px; border-radius: 12px; font-size: 13px; font-weight: 500; cursor: pointer; transition: background 0.2s, color 0.2s, border-color 0.2s; display: flex; align-items: center; justify-content: space-between; } 
@@ -199,7 +198,6 @@
         .track-play-btn { width: 24px; height: 24px; border-radius: 50%; background: rgba(0,0,0,0.06); display: flex; align-items: center; justify-content: center; font-size: 10px; transition: background 0.2s, color 0.2s; } body.dark-mode .track-play-btn { background: rgba(255,255,255,0.1); }
         .playlist-track.active .track-play-btn { background: rgba(255,255,255,0.2); } body.dark-mode .playlist-track.active .track-play-btn { background: rgba(0,255,255,0.2); color: #00ffff; }
 
-        /* 面板数据同步入口 */
         .btn-sync-panel { font-family: var(--font-sans); background: rgba(0, 113, 227, 0.1); color: #0071e3; border: 1px solid rgba(0, 113, 227, 0.2); padding: 10px; border-radius: 12px; font-size: 12px; font-weight: 600; cursor: pointer; transition: background 0.3s, color 0.3s, transform 0.3s, box-shadow 0.3s, border-color 0.3s; width: 100%; display: flex; justify-content: center; align-items: center; gap: 8px;}
         .btn-sync-panel:hover { background: #0071e3; color: #fff; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,113,227,0.3); }
         body.dark-mode .btn-sync-panel { background: rgba(0, 255, 255, 0.1); color: #00ffff; border-color: rgba(0, 255, 255, 0.2); }
@@ -416,14 +414,12 @@
         body.dark-mode .archive-modal-input { background: rgba(20,20,25,0.8); border-color: #444; color: #fff; }
         .archive-modal-input:focus { border-color: #0071e3; } body.dark-mode .archive-modal-input:focus { border-color: #00ffff; }
 
-        /* 🚀 彻底对齐并修复：独立宽敞的按钮容器，绝不被切掉 */
+        /* 🚀 存档控制面板居中按钮组 */
         .archive-btn-group { display: flex; gap: 15px; justify-content: center; padding: 15px 0; width: 100%; }
         .sync-btn { font-family: var(--font-sans); flex: 1; max-width: 160px; height: 44px; border-radius: 22px; cursor: pointer; font-weight: 600; font-size: 14px; transition: transform 0.2s, background 0.3s, box-shadow 0.3s, color 0.3s, border-color 0.3s; border: none; display: flex; align-items: center; justify-content: center; }
         .sync-btn:hover { transform: scale(1.05); }
 
-        /* 白天模式颜色 */
         .btn-gen, .btn-res { background: rgba(0, 113, 227, 0.1); color: #0071e3; border: 1px solid transparent; }
-        /* 黑夜模式颜色 - 两者完全保持一致发光青色 */
         body.dark-mode .btn-gen, body.dark-mode .btn-res { background: rgba(0, 255, 255, 0.15); color: #00ffff; border: 1px solid rgba(0, 255, 255, 0.3); }
         body.dark-mode .btn-gen:hover, body.dark-mode .btn-res:hover { background: rgba(0, 255, 255, 0.25); box-shadow: 0 0 15px rgba(0,255,255,0.4); }
 
@@ -504,7 +500,7 @@
             </div>
             <span id="bgm-time-total" style="font-family: var(--font-mono);">00:00</span>
         </div>
-        <div id="playlist-tracks"></div>
+        <div id="playlist-tracks" class="playlist-tracks-container"></div>
         
         <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(0,0,0,0.05); display: flex; justify-content: center;">
             <button class="btn-sync-panel hover-target" onclick="openArchiveModal()">
@@ -722,7 +718,7 @@
         });
 
         // =========================================
-        // 💾 极客离线存档协议 (豪华独立版)
+        // 💾 极客离线存档协议 
         // =========================================
         const ARCHIVE_PREFIX = "PHC-ARC-";
         const STORAGE_KEYS = { balance: 'phc_core_database_v1_b', history: 'phc_core_database_v1_h', lastYear: 'phc_core_database_v1_y', claimedOnce: 'phc_core_database_v1_c' };
@@ -799,7 +795,7 @@
         const allPanels = ['panel-tl', 'panel-tr', 'panel-bl', 'panel-br']; 
         const allTriggers = ['trigger-tl', 'trigger-tr', 'trigger-bl', 'trigger-br'];
 
-        // 🎵 【核心字典：已严格对应本地截图中正确的数字与歌名】
+        // 🎵 【完全对齐本地文件的正确字典】
         const bgmPlaylist = [ 
             { id: 1, title: '星晴 - 周杰伦', src: 'bgm1.mp3' }, 
             { id: 2, title: '爱你没差 - 周杰伦', src: 'bgm2.mp3' }, 
@@ -825,7 +821,6 @@
         const bgmViz = document.getElementById('bgm-viz'); 
 
         window.addEventListener('DOMContentLoaded', () => {
-            // 开局注入 src，防止第一次点击找不到文件
             bgmAudio.src = bgmPlaylist[currentBgmIndex].src;
             bgmAudio.load();
             renderPlaylist();
@@ -836,7 +831,7 @@
                 document.body.classList.add('preloaded');
                 setTimeout(() => {
                     document.getElementById('preloader').style.display = 'none';
-                    // 🚀 微信/手机浏览器静音突破：全局首击激活
+                    // 微信静音突破
                     document.addEventListener('click', function firstClickPlay(e) {
                         if(!isBgmPlaying) { 
                             if(e.target.closest('.btn-primary') || e.target.closest('.track-play-btn')) {
@@ -849,7 +844,7 @@
                     });
                 }, 1500); 
                 
-                // 🚀 定格除颤引擎：彻底锁死所有入场动画
+                // 定格入场动画
                 setTimeout(() => {
                     document.querySelectorAll('#view-home .header, .corner-element, .bento-item').forEach(el => {
                         el.classList.add('anim-done');
@@ -927,22 +922,17 @@
             }); 
         });
 
-        // =========================================
-        // 🚨 BGM 自动切歌、单曲循环、随机播放引擎 (彻底接管)
-        // =========================================
+        // 🚨 BGM 引擎与模式控制
         bgmAudio.addEventListener('ended', function() { 
             const mode = PLAY_MODES[currentModeIndex]; 
             if (mode === 'loop-single') { 
-                // 单曲循环
                 bgmAudio.currentTime = 0; 
                 bgmAudio.play(); 
             } else if (mode === 'random') { 
-                // 随机播放，尽量不与上一首重复
                 let nextIdx = Math.floor(Math.random() * bgmPlaylist.length);
                 if (nextIdx === currentBgmIndex) nextIdx = (nextIdx + 1) % bgmPlaylist.length;
                 playSpecificBgm(null, nextIdx); 
             } else { 
-                // 列表顺序播放
                 let nextIdx = (currentBgmIndex + 1) % bgmPlaylist.length;
                 playSpecificBgm(null, nextIdx); 
             } 
@@ -999,7 +989,6 @@
                 renderPlaylist(); 
             } else { 
                 bgmAudio.volume = getTargetVolume(); 
-                // 确保有声音源
                 if (!bgmAudio.src || bgmAudio.src === window.location.href) {
                      bgmAudio.src = bgmPlaylist[currentBgmIndex].src;
                 }
@@ -1009,9 +998,7 @@
                         isBgmPlaying = true; 
                         syncBgmVisualizer(); 
                         renderPlaylist(); 
-                    }).catch(e => {
-                        console.log('Audio catch:', e);
-                    });
+                    }).catch(e => { console.log('Audio catch:', e); });
                 }
             } 
         }
@@ -1029,9 +1016,7 @@
                     isBgmPlaying = true; 
                     syncBgmVisualizer(); 
                     renderPlaylist(); 
-                }).catch(e => {
-                    console.log('Play failed:', e);
-                });
+                }).catch(e => { console.log('Play failed:', e); });
             }
         }
 
@@ -1081,7 +1066,7 @@
         }
 
         // =========================================
-        // 🏪 杂货铺 (注入店长专属灵魂简介)
+        // 🏪 杂货铺
         // =========================================
         const permanentItems = [
             { id: 'perm1', name: '🎟️ 新手破冰券', price: 1, limit: '终身限领一次', rare: false, once: true, desc: '就是怕你用起来会有压力，所以设计了这个破冰券，嘻嘻，我真体贴。' },
